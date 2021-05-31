@@ -9,3 +9,5 @@ thread：创建线程的三种方式。
 
 suanfa：常见的算法。
 
+designPattern：设计模式。
+
