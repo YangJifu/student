@@ -1,8 +1,9 @@
 package com.yang.student;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yang.student.mybatisPlus.mapper.UserMapper;
-import com.yang.student.mybatisPlus.model.User;
+import com.yang.student.mybatisPlus.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,10 @@ public class UserTest {
      */
     @Test
     public void selectPart(){
-        QueryWrapper wrapper = new QueryWrapper<>();
-        wrapper.select("id","name","email").like("email","@");
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.select("id","name","email")
+                .gt("id","1")
+                .like("email","@");
         List<Map<String, Object>> map = userMapper.selectMaps(wrapper);
         map.forEach(System.out::println);
         //{name=大BOSS, id=1, email=boss@baomidou.com}
@@ -63,6 +66,16 @@ public class UserTest {
         //{max_age=40, avg_age=40.0000, min_age=40}
         //{max_age=40, avg_age=40.0000, manager_id=1, min_age=40}
         //{max_age=40, avg_age=40.0000, manager_id=2, min_age=40}
+    }
+
+    @Test
+    public void updateWrapper(){
+        UpdateWrapper<User> wrapper = new UpdateWrapper<>();
+        wrapper.set("name","菜经理");
+        wrapper.setSql("age=age-"+9);
+        wrapper.eq("id",5);
+        int update = userMapper.update(new User(), wrapper);
+        System.out.println(update);
     }
 
 }
