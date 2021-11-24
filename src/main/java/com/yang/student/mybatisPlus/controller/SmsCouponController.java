@@ -1,18 +1,15 @@
 package com.yang.student.mybatisPlus.controller;
 
 
-import com.yang.student.mybatisPlus.entity.SmsCoupon;
 import com.yang.student.mybatisPlus.entity.User;
+import com.yang.student.mybatisPlus.mapper.SmsCouponMapper;
+import com.yang.student.mybatisPlus.utils.BaseResponse;
+import com.yang.student.mybatisPlus.utils.BaseUtilService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,12 +22,23 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sms-coupon")
-@Api("优惠券信息")
+@Api(tags = "优惠券信息")
 public class SmsCouponController {
+    @Autowired
+    private BaseUtilService baseUtilService;
 
-    @PostMapping("/test")
+    @Autowired
+    private SmsCouponMapper smsCouponMapper;
+
+    @GetMapping("/test")
     @ApiOperation("测试")
-    public List<User> test(@ApiParam("123") String user){
-        return new ArrayList<>();
+    public BaseResponse test(@RequestParam String user){
+        List<User> info = smsCouponMapper.getInfo();
+        return baseUtilService.success(info);
+    }
+    @GetMapping("/test2")
+    @ApiOperation("测试")
+    public BaseResponse test2(){
+        return baseUtilService.success("success");
     }
 }

@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -23,4 +24,13 @@ public class User {
     private String email;
     private Long managerId;
     private LocalDateTime createTime;
+    private BigDecimal tradeScale;
+
+    public BigDecimal getTradeScale() {
+        return tradeScale;
+    }
+
+    public void setTradeScale(BigDecimal tradeScale) {
+        this.tradeScale = tradeScale;
+    }
 }
