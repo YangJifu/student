@@ -74,8 +74,8 @@ public class UserTest {
         wrapper.set("name","菜经理");
         wrapper.setSql("age=age-"+9);
         wrapper.eq("id",5);
-        int update = userMapper.update(new User(), wrapper);
-        System.out.println(update);
+        //int update = userMapper.update(new User(), wrapper);
+        //System.out.println(update);
     }
 
 }

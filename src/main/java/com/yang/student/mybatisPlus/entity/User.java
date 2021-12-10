@@ -6,14 +6,19 @@ package com.yang.student.mybatisPlus.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
+import lombok.*;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
  * mybatis-plus测试实体
  */
+@Builder
 @Data
 @ApiModel("mybatis-plus测试实体")
 public class User {
@@ -21,16 +26,9 @@ public class User {
     private Long id;
     private String name;
     private Integer age;
+    @NotBlank
     private String email;
     private Long managerId;
     private LocalDateTime createTime;
     private BigDecimal tradeScale;
-
-    public BigDecimal getTradeScale() {
-        return tradeScale;
-    }
-
-    public void setTradeScale(BigDecimal tradeScale) {
-        this.tradeScale = tradeScale;
-    }
 }

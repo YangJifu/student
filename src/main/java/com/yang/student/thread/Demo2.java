@@ -3,8 +3,12 @@ package com.yang.student.thread;
 import java.util.concurrent.Callable;
 import java.util.concurrent.FutureTask;
 
-//implements Callable，重写call()方法，然后包装成java.util.concurrent.FutureTask, 再然后包装成Thread
-//Callable：有返回值的线程，能取消线程，可以判断线程是否执行完毕
+/**
+ * @Author Yang~
+ * @Description implements Callable，重写call()方法，然后包装成java.util.concurrent.FutureTask, 再然后包装成Thread
+ * Callable：有返回值的线程，能取消线程，可以判断线程是否执行完毕
+ * @Date 2021/12/9 09:19
+**/
 public class Demo2 {
     public static void main(String[] args) throws Exception{
         MyCallable callable = new MyCallable();
